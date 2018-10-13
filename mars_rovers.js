@@ -38,7 +38,6 @@ class Rover {
           break;
       }
     });
-    plateau.occupied.push('' + this.x + ' ' + this.y);
   }
 
   rotateLeft() {
@@ -84,45 +83,21 @@ class Rover {
       case 'N':
         if (this.y < plateau.y) {
           this.y += 1;
-          let found = plateau.occupied.find(coordinate => {
-            return coordinate === '' + this.x + ' ' + this.y;
-          });
-          if (found) {
-            console.log("path obstructed!");
-          }
         }
         break;
       case 'E':
         if (this.x < plateau.x) {
           this.x += 1;
-          let found = plateau.occupied.find(coordinate => {
-            return coordinate === '' + this.x + ' ' + this.y;
-          });
-          if (found) {
-            console.log("path obstructed!");
-          }
         }
         break;
       case 'S':
         if (this.y > 0) {
           this.y -= 1;
-          let found = plateau.occupied.find(coordinate => {
-            return coordinate === '' + this.x + ' ' + this.y;
-          });
-          if (found) {
-            console.log("path obstructed!");
-          }
         }
         break;
       case 'W':
         if (this.x > 0) {
           this.x -= 1;
-          let found = plateau.occupied.find(coordinate => {
-            return coordinate === '' + this.x + ' ' + this.y;
-          });
-          if (found) {
-            console.log("path obstructed!");
-          }
         }
         break;
       default:
