@@ -83,44 +83,48 @@ class Rover {
     switch(this.heading) {
       case 'N':
         if (this.y < plateau.y) {
-          this.y += 1;
           let found = plateau.occupied.find(coordinate => {
-            return coordinate === '' + this.x + ' ' + this.y;
+            return coordinate === '' + this.x + ' ' + (this.y + 1);
           });
-          if (found) {
+          if (!found) {
+            this.y += 1;
+          } else {
             console.log("path obstructed!");
           }
         }
         break;
       case 'E':
         if (this.x < plateau.x) {
-          this.x += 1;
           let found = plateau.occupied.find(coordinate => {
-            return coordinate === '' + this.x + ' ' + this.y;
+            return coordinate === '' + (this.x + 1) + ' ' + this.y;
           });
-          if (found) {
+          if (!found) {
+            this.x += 1;
+          } else {
             console.log("path obstructed!");
           }
         }
         break;
       case 'S':
         if (this.y > 0) {
-          this.y -= 1;
           let found = plateau.occupied.find(coordinate => {
-            return coordinate === '' + this.x + ' ' + this.y;
+            return coordinate === '' + this.x + ' ' + (this.y - 1);
           });
-          if (found) {
+          if (!found) {
+            this.y -= 1;
+          } else {
             console.log("path obstructed!");
           }
         }
         break;
       case 'W':
         if (this.x > 0) {
-          this.x -= 1;
           let found = plateau.occupied.find(coordinate => {
-            return coordinate === '' + this.x + ' ' + this.y;
+            return coordinate === '' + (this.x - 1) + ' ' + this.y;
           });
-          if (found) {
+          if (!found) {
+            this.x -= 1;
+          } else {
             console.log("path obstructed!");
           }
         }
