@@ -75,7 +75,6 @@ class Rover {
   }
 
   moveForward() {
-    console.log(this.position);
     switch(this.heading) {
       case 'N':
         if (this.y < plateau.y) {
