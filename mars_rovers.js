@@ -1,12 +1,12 @@
 class Rover {
   constructor(position) {
     let data = position.split(' ');
-    this.x = data[0];
-    this.y = data[1];
+    this.x = parseInt(data[0]);
+    this.y = parseInt(data[1]);
     this.heading = data[2];
   }
 
-  get roverPosition() {
+  get position() {
     return [this.x, this.y, this.heading].join(' ');
   }
 
@@ -49,7 +49,22 @@ class Rover {
   }
 
   rotateRight() {
-
+    switch(this.heading) {
+      case 'N':
+        this.heading = 'E';
+        break;
+      case 'E':
+        this.heading = 'S'
+        break;
+      case 'S':
+        this.heading = 'W'
+        break;
+      case 'W':
+        this.heading = 'N'
+        break;
+      default:
+        break;
+    }
   }
 
   moveForward() {
