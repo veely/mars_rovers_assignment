@@ -1,11 +1,14 @@
 const chai = require('chai');
 const expect = chai.expect;
 
-const Rover = require('../mars_rovers.js').Rover;
+const assets = require('../mars_rovers.js')
+const Rover = assets.Rover;
+const setGridSize = assets.setGridSize;
 
 describe("Rover Navigation", function() {
   let rover1, rover2, instructions;
   beforeEach(() => {
+    setGridSize(10, 10);
     rover1 = new Rover("1 2 N");
     rover2 = new Rover("3 3 E");
     instructions1 = "LMLMLMLMM";
@@ -25,6 +28,4 @@ describe("Rover Navigation", function() {
       expect(rover2.position).to.equal("5 1 E");
     });
   });
-
-  
 });
