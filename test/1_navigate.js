@@ -1,7 +1,7 @@
 const chai = require('chai');
 const expect = chai.expect;
 
-const Rover = require('../mars_rovers.js');
+const Rover = require('../mars_rovers.js').Rover;
 
 describe("Rover Navigation", function() {
   let rover1, rover2, instructions;
