@@ -1,3 +1,10 @@
+let plateau = { x: 0, y: 0};
+
+const setGridSize = (x, y) => {
+  plateau.x = x;
+  plateau.y = y;
+}
+
 class Rover {
   constructor(position) {
     let data = position.split(' ');
@@ -68,18 +75,27 @@ class Rover {
   }
 
   moveForward() {
+    console.log(this.position);
     switch(this.heading) {
       case 'N':
-        this.y += 1;
+        if (this.y < plateau.y) {
+          this.y += 1;
+        }
         break;
       case 'E':
-        this.x += 1;
+        if (this.x < plateau.x) {
+          this.x += 1;
+        }
         break;
       case 'S':
-        this.y -= 1;
+        if (this.y > 0) {
+          this.y -= 1;
+        }
         break;
       case 'W':
-        this.x -= 1;
+        if (this.x > 0) {
+          this.x -= 1;
+        }
         break;
       default:
         break;
@@ -87,4 +103,7 @@ class Rover {
   }
 }
 
-module.exports = Rover;
+module.exports = {
+  Rover: Rover,
+  setGridSize: setGridSize
+}
