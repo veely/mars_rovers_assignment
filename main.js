@@ -12,15 +12,30 @@ let inputData = data.split('\r\n');
 if (inputData.length > 2 && inputData.length % 2 !== 0 ) {
   //Converts first line of input into numbers
   let gridSize = inputData[0].split(' ').map(Number);
-  let roverPosition = inputData[1];
-  let instructions = inputData[2];
   setGridSize(gridSize[0], gridSize[1]);
 
-  rover1 = new Rover(roverPosition);
-  instructions1 = instructions;
-  rover1.navigate(instructions1);
+  //Removes the grid size from the input array so rover data is isolated
+  inputData.splice(0, 1);
 
-  console.log(rover1.position);
+  let roverData = [];
+
+  while (inputData.length) {
+    //Every 2 elements should be separate rover data
+    roverData.push(inputData.splice(0, 2));
+  }
+
+  let rovers = []
+
+  roverData.map((data, index) => {
+    let roverPosition = data[0];
+    let instructions = data[1];
+    rovers[index] = new Rover(roverPosition);
+    rovers[index].navigate(instructions);
+  });
+
+  rovers.map((rover, index) => {
+    console.log(rover.position);
+  });
 } else {
   console.log("ERROR: Invalid number of arguments. Please make sure the input is formatted like the following example: \n 8 7 \n 2 4 E \n LMMRRMLMRMM")
 }
