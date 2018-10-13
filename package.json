@@ -1,0 +1,18 @@
+{
+  "name": "mars-rovers",
+  "version": "1.0.0",
+  "description": "",
+  "main": "mars_rovers.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "node ./node_modules/mocha/bin/mocha"
+  },
+  "author": "Vincent Ly",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^5.2.0"
+  }
+}
