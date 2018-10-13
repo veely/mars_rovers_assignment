@@ -1,4 +1,8 @@
-let plateau = { x: 0, y: 0};
+let plateau = { 
+  x: 0,
+  y: 0,
+  occupied: []
+};
 
 const setGridSize = (x, y) => {
   plateau.x = x;
