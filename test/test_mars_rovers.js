@@ -13,7 +13,7 @@ describe("navigate", function() {
 
 	context("When given instructions 'LMLMLMLMM'", () => {
 		it("should return '1 3 N'", function() {
-			expect(rover1.roverPosition).to.equal("1 3 N");
+		  expect(rover1.roverPosition).to.equal("1 3 N");
 		});
 	});
 });
