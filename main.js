@@ -30,7 +30,7 @@ if (inputData.length > 2 && inputData.length % 2 !== 0 ) {
   roverData.map((data, index) => {
     let roverPosition = data[0];
     let instructions = data[1];
-    rovers[index] = new Rover(roverPosition);
+    rovers[index] = new Rover(roverPosition, "Rover#" + (index + 1));
     rovers[index].navigate(instructions);
   });
 

@@ -11,13 +11,14 @@ const setGridSize = (x, y) => {
 }
 
 class Rover {
-  constructor(position) {
+  constructor(position, id) {
+    this.id = id;
     let data = position.split(' ');
     let x = parseInt(data[0]);
     let y = parseInt(data[1]);
     if (this.isBlocked(x, y)) {
       this.deployed = false;
-      console.log("Error: rover cannot be deployed onto occupied spot.");
+      console.log(this.id + ": Cannot be deployed onto occupied spot.");
     } else {
       this.x = x;
       this.y = y;
@@ -103,10 +104,10 @@ class Rover {
             this.y += 1;
             plateau[this.y][this.x] = 'r';
           } else {
-            console.log("Path obstructed by another rover.");
+            console.log(this.id + ": Path obstructed by another rover.");
           }
         } else {
-          console.log("Cannot move rover outside of plateau boundaries.")
+          console.log(this.id + ": Cannot move outside of plateau boundaries.")
           return "blocked";
         }
         break;
@@ -117,11 +118,11 @@ class Rover {
             this.x += 1;
             plateau[this.y][this.x] = 'r';
           } else {
-            console.log("Path obstructed by another rover.");
+            console.log(this.id + ": Path obstructed by another rover.");
             return "blocked";
           }
         } else {
-          console.log("Cannot move rover outside of plateau boundaries.")
+          console.log(this.id + ": Cannot move outside of plateau boundaries.")
         }
         break;
       case 'S':
@@ -131,11 +132,11 @@ class Rover {
             this.y -= 1;
             plateau[this.y][this.x] = 'r';
           } else {
-            console.log("Path obstructed by another rover.");
+            console.log(this.id + ": Path obstructed by another rover.");
             return "blocked";
           }
         } else {
-          console.log("Cannot move rover outside of plateau boundaries.")
+          console.log(this.id + ": Cannot move outside of plateau boundaries.")
         }
         break;
       case 'W':
@@ -145,11 +146,11 @@ class Rover {
             this.x -= 1;
             plateau[this.y][this.x] = 'r';
           } else {
-            console.log("Path obstructed by another rover.");
+            console.log(this.id + ": Path obstructed by another rover.");
             return "blocked";
           }
         } else {
-          console.log("Cannot move rover outside of plateau boundaries.")
+          console.log(this.id + ": Cannot move outside of plateau boundaries.")
         }
         break;
       default:
