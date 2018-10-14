@@ -9,13 +9,13 @@ const plateau = assets.plateau;
 describe("Rover", function(){
   let rover1, rover2, instructions1, instructions2;
   before(() => {
+    setGridSize(10, 10);
     rover1 = new Rover("1 2 N");
     rover2 = new Rover("3 3 E");
     instructions1 = "LMLMLMLMM";
     instructions2 = "MMRMMRMRRM";
-    setGridSize(10, 10);
   });
-  
+
   describe("Rover Navigation", function() {
     context("When rover at '1 2 N', given instructions 'LMLMLMLMM'", () => {
       it("should return '1 3 N'", function() {
