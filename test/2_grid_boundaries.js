@@ -15,10 +15,10 @@ describe("Rover", function(){
   
   describe("Grid Boundaries", function() {
     context("When rover at '4 1 S', given instructions 'LMMMMMRMRM'", () => {
-      it("should return '5 0 W'", function() {
+      it("should return '4 0 W'", function() {
         rover1 = new Rover("4 1 S", "Rover#1");
         rover1.navigate(instructions1);
-        expect(rover1.position).to.equal("5 0 W");
+        expect(rover1.position).to.equal("4 0 W");
       });
     });
   });
