@@ -5,14 +5,15 @@ const assets = require('../mars_rovers.js')
 const Rover = assets.Rover;
 const setGridSize = assets.setGridSize;
 const plateau = assets.plateau;
+
 describe("Rover", function(){
   let rover1, rover2, instructions1, instructions2;
   beforeEach(() => {
-    plateau.occupied = [];
-    setGridSize(6, 4);
+    // plateau.occupied = [];
   });
-
+  
   describe("Grid Boundaries", function() {
+    setGridSize(5, 4);
     rover1 = new Rover("4 1 S");
     instructions1 = "LMMMMMRMRM";
     

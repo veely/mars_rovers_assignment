@@ -1,6 +1,7 @@
 const assets = require('./mars_rovers.js')
 const Rover = assets.Rover;
 const setGridSize = assets.setGridSize;
+const plateau = assets.plateau;
 
 const fs = require('fs');
 const input = process.argv[2];

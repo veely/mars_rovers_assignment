@@ -1,24 +1,36 @@
-let plateau = { 
-  x: 0,
-  y: 0,
-  occupied: []
-};
+let plateau = [];
 
 const setGridSize = (x, y) => {
-  plateau.x = x;
-  plateau.y = y;
+  for (let count_y = 0 ; count_y <= y ; count_y++) {
+    plateau.push([]);
+    for (let count_x = 0 ; count_x <= x ; count_x++) {
+      plateau[count_y].push(' ');
+    }
+  }
 }
 
 class Rover {
   constructor(position) {
     let data = position.split(' ');
-    this.x = parseInt(data[0]);
-    this.y = parseInt(data[1]);
-    this.heading = data[2];
+    let x = parseInt(data[0]);
+    let y = parseInt(data[1]);
+    if (this.isBlocked(x, y)) {
+      this.deployed = false;
+      console.log("Error: rover cannot be deployed onto occupied spot.");
+    } else {
+      this.x = x;
+      this.y = y;
+      this.heading = data[2];
+      plateau[this.y][this.x] = 'r';
+    }
   }
 
   get position() {
     return [this.x, this.y, this.heading].join(' ');
+  }
+
+  isBlocked(x, y) {
+    return plateau[y][x] === 'r'
   }
 
   navigate(instructions) {
@@ -32,7 +44,7 @@ class Rover {
           this.rotateRight();
           break;
         case 'M':
-          if (this.moveForward(step) === "blocked") {
+          if (this.moveForward() === "blocked") {
             return "blocked";
           }
           break;
@@ -40,7 +52,6 @@ class Rover {
           break;
       }
     }
-    plateau.occupied.push('' + this.x + ' ' + this.y);
   }
 
   rotateLeft() {
@@ -81,18 +92,17 @@ class Rover {
     }
   }
 
-  moveForward(step) {
+  moveForward() {
     //all cases check for grid boundaries first
     switch(this.heading) {
       case 'N':
-        if (this.y < plateau.y) {
-          let found = plateau.occupied.find(coordinate => {
-            return coordinate === '' + this.x + ' ' + (this.y + 1);
-          });
-          if (!found) {
+        if (this.y < plateau.length) {
+          if (!this.isBlocked(this.x, this.y + 1)) {
+            plateau[this.y][this.x] = ' ';
             this.y += 1;
+            plateau[this.y][this.x] = 'r';
           } else {
-            console.log("Path obstructed by another rover at step #%i.", step);
+            console.log("Path obstructed by another rover.");
           }
         } else {
           console.log("Cannot move rover outside of plateau boundaries.")
@@ -100,14 +110,13 @@ class Rover {
         }
         break;
       case 'E':
-        if (this.x < plateau.x) {
-          let found = plateau.occupied.find(coordinate => {
-            return coordinate === '' + (this.x + 1) + ' ' + this.y;
-          });
-          if (!found) {
+        if (this.x < plateau[0].length) {
+          if (!this.isBlocked(this.x + 1, this.y)) {
+            plateau[this.y][this.x] = ' ';
             this.x += 1;
+            plateau[this.y][this.x] = 'r';
           } else {
-            console.log("Path obstructed by another rover at step #%i.", step);
+            console.log("Path obstructed by another rover.");
             return "blocked";
           }
         } else {
@@ -116,13 +125,12 @@ class Rover {
         break;
       case 'S':
         if (this.y > 0) {
-          let found = plateau.occupied.find(coordinate => {
-            return coordinate === '' + this.x + ' ' + (this.y - 1);
-          });
-          if (!found) {
+          if (!this.isBlocked(this.x, this.y - 1)) {
+            plateau[this.y][this.x] = ' ';
             this.y -= 1;
+            plateau[this.y][this.x] = 'r';
           } else {
-            console.log("Path obstructed by another rover at step #%i.", step);
+            console.log("Path obstructed by another rover.");
             return "blocked";
           }
         } else {
@@ -131,13 +139,12 @@ class Rover {
         break;
       case 'W':
         if (this.x > 0) {
-          let found = plateau.occupied.find(coordinate => {
-            return coordinate === '' + (this.x - 1) + ' ' + this.y;
-          });
-          if (!found) {
+          if (!this.isBlocked(this.x - 1, this.y)) {
+            plateau[this.y][this.x] = ' ';
             this.x -= 1;
+            plateau[this.y][this.x] = 'r';
           } else {
-            console.log("Path obstructed by another rover at step #%i.", step);
+            console.log("Path obstructed by another rover.");
             return "blocked";
           }
         } else {

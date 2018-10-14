@@ -9,10 +9,10 @@ const plateau = assets.plateau;
 describe("Rover", function(){
   let rover1, rover2, instructions1, instructions2;
   beforeEach(() => {
-    plateau.occupied = [];
-    setGridSize(15, 10);
+    // plateau.occupied = [];
   });
   describe("Path Obstruction", function() {
+    setGridSize(15, 10);
     rover1 = new Rover("0 0 N");
     instructions1 = "MMMRMMMMM";
     rover2 = new Rover("1 3 W");

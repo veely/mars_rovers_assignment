@@ -4,15 +4,15 @@ const expect = chai.expect;
 const assets = require('../mars_rovers.js')
 const Rover = assets.Rover;
 const setGridSize = assets.setGridSize;
-const plateau = assets.plateau
+const plateau = assets.plateau;
 
 describe("Rover", function(){
   let rover1, rover2, instructions1, instructions2;
   beforeEach(() => {
-    plateau.occupied = [];
-    setGridSize(10, 10);
+
   });
   describe("Rover Navigation", function() {
+    setGridSize(10, 10);
     rover1 = new Rover("1 2 N");
     rover2 = new Rover("3 3 E");
     instructions1 = "LMLMLMLMM";
