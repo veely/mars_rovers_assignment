@@ -13,7 +13,7 @@ if (inputData.length > 2 && inputData.length % 2 !== 0 ) {
   //Converts first line of input into numbers
   let gridSize = inputData[0].split(' ').map(Number);
   setGridSize(gridSize[0], gridSize[1]);
-
+  
   //Removes the grid size from the input array so rover data is isolated
   inputData.splice(0, 1);
 

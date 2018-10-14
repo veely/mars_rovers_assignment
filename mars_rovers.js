@@ -23,8 +23,8 @@ class Rover {
 
   navigate(instructions) {
     let splitInstructions = instructions.split('');
-    splitInstructions.map( instruction => {
-      switch(instruction) {
+    for (let step in splitInstructions) {
+      switch(splitInstructions[step]) {
         case 'L':
           this.rotateLeft();
           break;
@@ -32,12 +32,14 @@ class Rover {
           this.rotateRight();
           break;
         case 'M':
-          this.moveForward();
+          if (this.moveForward(step) === "blocked") {
+            return "blocked";
+          }
           break;
         default:
           break;
       }
-    });
+    }
     plateau.occupied.push('' + this.x + ' ' + this.y);
   }
 
@@ -79,7 +81,8 @@ class Rover {
     }
   }
 
-  moveForward() {
+  moveForward(step) {
+    //all cases check for grid boundaries first
     switch(this.heading) {
       case 'N':
         if (this.y < plateau.y) {
@@ -89,8 +92,11 @@ class Rover {
           if (!found) {
             this.y += 1;
           } else {
-            console.log("path obstructed!");
+            console.log("Path obstructed by another rover at step #%i.", step);
           }
+        } else {
+          console.log("Cannot move rover outside of plateau boundaries.")
+          return "blocked";
         }
         break;
       case 'E':
@@ -101,8 +107,11 @@ class Rover {
           if (!found) {
             this.x += 1;
           } else {
-            console.log("path obstructed!");
+            console.log("Path obstructed by another rover at step #%i.", step);
+            return "blocked";
           }
+        } else {
+          console.log("Cannot move rover outside of plateau boundaries.")
         }
         break;
       case 'S':
@@ -113,8 +122,11 @@ class Rover {
           if (!found) {
             this.y -= 1;
           } else {
-            console.log("path obstructed!");
+            console.log("Path obstructed by another rover at step #%i.", step);
+            return "blocked";
           }
+        } else {
+          console.log("Cannot move rover outside of plateau boundaries.")
         }
         break;
       case 'W':
@@ -125,8 +137,11 @@ class Rover {
           if (!found) {
             this.x -= 1;
           } else {
-            console.log("path obstructed!");
+            console.log("Path obstructed by another rover at step #%i.", step);
+            return "blocked";
           }
+        } else {
+          console.log("Cannot move rover outside of plateau boundaries.")
         }
         break;
       default:
@@ -137,5 +152,6 @@ class Rover {
 
 module.exports = {
   Rover: Rover,
-  setGridSize: setGridSize
+  setGridSize: setGridSize,
+  plateau: plateau
 }
