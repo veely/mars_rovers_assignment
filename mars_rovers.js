@@ -16,15 +16,17 @@ class Rover {
     let data = position.split(' ');
     let x = parseInt(data[0]);
     let y = parseInt(data[1]);
-    if (this.isBlocked(x, y)) {
-      this.deployed = false;
-      console.log(this.id + ": Cannot be deployed onto occupied spot.");
-    } else {
-      this.x = x;
-      this.y = y;
-      this.heading = data[2];
-      plateau[this.y][this.x] = 'r';
-    }
+    
+      if (this.isBlocked(x, y)) {
+        this.deployed = false;
+        console.log(this.id + ": Cannot be deployed onto occupied spot.");
+      } else {
+        this.x = x;
+        this.y = y;
+        this.heading = data[2];
+        plateau[this.y][this.x] = 'r';
+      }
+    
   }
 
   get position() {
@@ -98,7 +100,7 @@ class Rover {
     //all cases check for grid boundaries first
     switch(this.heading) {
       case 'N':
-        if (this.y < plateau.length) {
+        if (this.y < plateau.length - 1) {
           if (!this.isBlocked(this.x, this.y + 1)) {
             plateau[this.y][this.x] = ' ';
             this.y += 1;
@@ -112,7 +114,7 @@ class Rover {
         }
         break;
       case 'E':
-        if (this.x < plateau[0].length) {
+        if (this.x < plateau[0].length - 1) {
           if (!this.isBlocked(this.x + 1, this.y)) {
             plateau[this.y][this.x] = ' ';
             this.x += 1;

@@ -25,13 +25,17 @@ if (inputData.length > 2 && inputData.length % 2 !== 0 ) {
     roverData.push(inputData.splice(0, 2));
   }
 
-  let rovers = []
+  let rovers = [];
+  let instructions = [];
 
   roverData.map((data, index) => {
     let roverPosition = data[0];
-    let instructions = data[1];
+    instructions.push(data[1]);
     rovers[index] = new Rover(roverPosition, "Rover#" + (index + 1));
-    rovers[index].navigate(instructions);
+  });
+
+  rovers.map((rover, index) => {
+    rover.navigate(instructions[index]);
   });
 
   rovers.map((rover, index) => {
