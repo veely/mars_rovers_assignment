@@ -1,6 +1,7 @@
 let plateau = [];
 
 const setGridSize = (x, y) => {
+  plateau = [];
   for (let count_y = 0 ; count_y <= y ; count_y++) {
     plateau.push([]);
     for (let count_x = 0 ; count_x <= x ; count_x++) {
