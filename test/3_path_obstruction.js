@@ -4,21 +4,23 @@ const expect = chai.expect;
 const assets = require('../mars_rovers.js')
 const Rover = assets.Rover;
 const setGridSize = assets.setGridSize;
+const plateau = assets.plateau;
 
-describe("Grid Boundaries", function() {
-  let rover1, rover2, instructions;
-  beforeEach(() => {
+describe("Rover", function(){
+  let rover1, rover2, instructions1, instructions2;
+  before(() => {
     setGridSize(15, 10);
-    rover1 = new Rover("0 0 N");
+    rover1 = new Rover("0 0 N", "Rover#1");
+    rover2 = new Rover("1 3 W", "Rover#2");
     instructions1 = "MMMRMMMMM";
-    rover1.navigate(instructions1);
-    rover2 = new Rover("1 3 W");
     instructions2 = "RRMMMMMM";
   });
-
-  context("When a rover tries to move through a path blocked by another rover", () => {
-    it("should return 'Error: Path is obstructed by another rover!'", function() {
-      expect(rover2.navigate(instructions1)).to.equal("Error: Path is obstructed by another rover!");
+  
+  describe("Path Obstruction", function() {
+    context("When a rover tries to move through a path blocked by another rover", () => {
+      it("should return 'blocked'", function() {
+        expect(rover1.navigate(instructions1)).to.equal("blocked");
+      });
     });
   });
 });
