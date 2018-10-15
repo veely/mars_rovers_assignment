@@ -29,23 +29,21 @@ class Rover {
     let x = parseInt(data[0]);
     let y = parseInt(data[1]);
     let heading = data[2];
-    if ( (x >= 0 && x < plateau[0].length) && (y >= 0 && y < plateau.length) ) {
-      if (heading !== 'N' && heading !== 'S' && heading !== 'E' && heading !== 'W') {
-        this.deployed = false;
-        console.log(this.id + ": Must be given a starting direction (N, S, E, W). Was not deployed.\n");
-      } else if (this.isBlocked(x, y)) {
-        this.deployed = false;
-        console.log(this.id + ": Cannot be deployed onto occupied spot.\n");
-      } else {
-        this.deployed = true;
-        this.x = x;
-        this.y = y;
-        this.heading = heading;
-        plateau[this.y][this.x] = 'r';
-      }
-    } else {
+    if ( !(x >= 0 && x < plateau[0].length) || !(y >= 0 && y < plateau.length) ) {
       this.deployed = false;
       console.log(this.id + ": Cannot be deployed outside of plateau boundaries.\n");
+    } else if (heading !== 'N' && heading !== 'S' && heading !== 'E' && heading !== 'W') {
+      this.deployed = false;
+      console.log(this.id + ": Must be given a starting direction (N, S, E, W). Was not deployed.\n");
+    } else if (this.isBlocked(x, y)) {
+      this.deployed = false;
+      console.log(this.id + ": Cannot be deployed onto occupied spot.\n");
+    } else {
+      this.deployed = true;
+      this.x = x;
+      this.y = y;
+      this.heading = heading;
+      plateau[this.y][this.x] = 'r';
     }
   }
 
