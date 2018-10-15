@@ -17,18 +17,20 @@ class Rover {
     let data = position.split(' ');
     let x = parseInt(data[0]);
     let y = parseInt(data[1]);
-    
-    if (this.isBlocked(x, y)) {
-      this.deployed = false;
-      console.log(this.id + ": Cannot be deployed onto occupied spot.");
+    if ( (x >= 0 && x < plateau[0].length) && (y >= 0 && y < plateau.length) ) {
+      if (this.isBlocked(x, y)) {
+        this.deployed = false;
+        console.log(this.id + ": Cannot be deployed onto occupied spot.\n");
+      } else {
+        this.deployed = true;
+        this.x = x;
+        this.y = y;
+        this.heading = data[2];
+        plateau[this.y][this.x] = 'r';
+      }
     } else {
-      this.deployed = true;
-      this.x = x;
-      this.y = y;
-      this.heading = data[2];
-      plateau[this.y][this.x] = 'r';
+      console.log(this.id + ": Cannot be deployed outside of plateau boundaries.\n");
     }
-    
   }
 
   get position() {

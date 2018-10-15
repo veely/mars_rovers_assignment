@@ -35,15 +35,21 @@ if (inputData.length > 2 && inputData.length % 2 !== 0 ) {
   });
 
   rovers.map((rover, index) => {
-    if (rover.navigate(instructions[index]) === "blocked") {
-      console.log(rover.id + ": Path has been obstructed by another rover. Stopping at current location.")
-    } else if (rover.hitBoundaries) {
-      console.log(rover.id + ": Due to plateau boundaries, some instructions were ignored.")
+    if (rover.deployed) {
+      if (rover.navigate(instructions[index]) === "blocked") {
+        console.log(rover.id + ": Path has been obstructed by another rover. Stopping at current location.\n")
+      } else if (rover.hitBoundaries) {
+        console.log(rover.id + ": Due to plateau boundaries, some instructions were ignored.\n")
+      }
     }
   });
 
   rovers.map((rover, index) => {
-    console.log(rover.position);
+    if (rover.deployed) {
+      console.log(rover.id + " position: " + rover.position);
+    } else {
+      console.log(rover.id + " position: Not deployed due to invalid coordinates.");
+    }
   });
 } else {
   console.log("ERROR: Invalid number of arguments. Please make sure the input is formatted like the following example: \n 8 7 \n 2 4 E \n LMMRRMLMRMM")
