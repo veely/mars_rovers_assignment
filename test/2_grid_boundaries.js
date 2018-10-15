@@ -21,5 +21,12 @@ describe("Rover", function(){
         expect(rover1.position).to.equal("4 0 W");
       });
     });
+    
+    context("When attempting to deploy rover outside of grid boundaries", () => {
+      it("deployed status should return 'false'", function() {
+        rover2 = new Rover("6 4 E", "Rover#2");
+        expect(rover2.deployed).to.equal(false);
+      });
+    });
   });
 });
