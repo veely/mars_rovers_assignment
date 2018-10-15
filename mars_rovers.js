@@ -117,55 +117,47 @@ class Rover {
     //all cases check for grid boundaries first
     switch(this.heading) {
       case 'N':
-        if (this.y < plateau.length - 1) {
-          if (!this.isBlocked(this.x, this.y + 1)) {
-            plateau[this.y][this.x] = ' ';
-            this.y += 1;
-            plateau[this.y][this.x] = 'r';
-          } else {
-            this.blocked = true;
-          }
-        } else {
+        if (this.y >= plateau.length - 1) {
           this.hitBoundaries = true;
+        } else if (!this.isBlocked(this.x, this.y + 1)) {
+          plateau[this.y][this.x] = ' ';
+          this.y += 1;
+          plateau[this.y][this.x] = 'r';
+        } else {
+          this.blocked = true;
         }
         break;
       case 'E':
-        if (this.x < plateau[0].length - 1) {
-          if (!this.isBlocked(this.x + 1, this.y)) {
-            plateau[this.y][this.x] = ' ';
-            this.x += 1;
-            plateau[this.y][this.x] = 'r';
-          } else {
-            this.blocked = true;
-          }
-        } else {
+        if (this.x >= plateau[0].length - 1) {
           this.hitBoundaries = true;
+        } else if (!this.isBlocked(this.x + 1, this.y)) {
+          plateau[this.y][this.x] = ' ';
+          this.x += 1;
+          plateau[this.y][this.x] = 'r';
+        } else {
+          this.blocked = true;
         }
         break;
       case 'S':
-        if (this.y > 0) {
-          if (!this.isBlocked(this.x, this.y - 1)) {
-            plateau[this.y][this.x] = ' ';
-            this.y -= 1;
-            plateau[this.y][this.x] = 'r';
-          } else {
-            this.blocked = true;
-          }
-        } else {
+        if (this.y <= 0) {
           this.hitBoundaries = true;
+        } else if (!this.isBlocked(this.x, this.y - 1)) {
+          plateau[this.y][this.x] = ' ';
+          this.y -= 1;
+          plateau[this.y][this.x] = 'r';
+        } else {
+          this.blocked = true;
         }
         break;
       case 'W':
-        if (this.x > 0) {
-          if (!this.isBlocked(this.x - 1, this.y)) {
-            plateau[this.y][this.x] = ' ';
-            this.x -= 1;
-            plateau[this.y][this.x] = 'r';
-          } else {
-            this.blocked = true;
-          }
-        } else {
+        if (this.x <= 0) {
           this.hitBoundaries = true;
+        } else if (!this.isBlocked(this.x - 1, this.y)) {
+          plateau[this.y][this.x] = ' ';
+          this.x -= 1;
+          plateau[this.y][this.x] = 'r';
+        } else {
+          this.blocked = true;
         }
         break;
       default:
