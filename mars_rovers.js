@@ -1,22 +1,28 @@
 let plateau = [];
 
 const setGridSize = (x, y) => {
-  plateau = [];
-  for (let count_y = 0 ; count_y <= y ; count_y++) {
-    plateau.push([]);
-    for (let count_x = 0 ; count_x <= x ; count_x++) {
-      plateau[count_y].push(' ');
+  if (typeof x === 'number' && typeof y === 'number') {
+    plateau = [];
+    for (let count_y = 0 ; count_y <= y ; count_y++) {
+      plateau.push([]);
+      for (let count_x = 0 ; count_x <= x ; count_x++) {
+        plateau[count_y].push(' ');
+      }
     }
+  } else {
+    return "invalid";
   }
 }
 
 class Rover {
   constructor(position, id) {
     this.id = id;
+    this.invalidInstructions = false;
     this.hitBoundaries = false;
     let data = position.split(' ');
     let x = parseInt(data[0]);
     let y = parseInt(data[1]);
+    let heading = data[2];
     if ( (x >= 0 && x < plateau[0].length) && (y >= 0 && y < plateau.length) ) {
       if (this.isBlocked(x, y)) {
         this.deployed = false;
@@ -25,7 +31,7 @@ class Rover {
         this.deployed = true;
         this.x = x;
         this.y = y;
-        this.heading = data[2];
+        this.heading = heading;
         plateau[this.y][this.x] = 'r';
       }
     } else {
@@ -58,6 +64,7 @@ class Rover {
           }
           break;
         default:
+          this.invalidInstructions = true;
           break;
       }
     }
