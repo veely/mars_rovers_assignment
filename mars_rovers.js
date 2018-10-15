@@ -13,19 +13,21 @@ const setGridSize = (x, y) => {
 class Rover {
   constructor(position, id) {
     this.id = id;
+    this.hitBoundaries = false;
     let data = position.split(' ');
     let x = parseInt(data[0]);
     let y = parseInt(data[1]);
     
-      if (this.isBlocked(x, y)) {
-        this.deployed = false;
-        console.log(this.id + ": Cannot be deployed onto occupied spot.");
-      } else {
-        this.x = x;
-        this.y = y;
-        this.heading = data[2];
-        plateau[this.y][this.x] = 'r';
-      }
+    if (this.isBlocked(x, y)) {
+      this.deployed = false;
+      console.log(this.id + ": Cannot be deployed onto occupied spot.");
+    } else {
+      this.deployed = true;
+      this.x = x;
+      this.y = y;
+      this.heading = data[2];
+      plateau[this.y][this.x] = 'r';
+    }
     
   }
 
@@ -109,7 +111,7 @@ class Rover {
             return "blocked";
           }
         } else {
-          console.log(this.id + ": Cannot move outside of plateau boundaries.")
+          this.hitBoundaries = true;
         }
         break;
       case 'E':
@@ -122,7 +124,7 @@ class Rover {
             return "blocked";
           }
         } else {
-          console.log(this.id + ": Cannot move outside of plateau boundaries.")
+          this.hitBoundaries = true;
         }
         break;
       case 'S':
@@ -135,7 +137,7 @@ class Rover {
             return "blocked";
           }
         } else {
-          console.log(this.id + ": Cannot move outside of plateau boundaries.")
+          this.hitBoundaries = true;
         }
         break;
       case 'W':
@@ -148,7 +150,7 @@ class Rover {
             return "blocked";
           }
         } else {
-          console.log(this.id + ": Cannot move outside of plateau boundaries.")
+          this.hitBoundaries = true;
         }
         break;
       default:

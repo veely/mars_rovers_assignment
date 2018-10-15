@@ -37,8 +37,9 @@ if (inputData.length > 2 && inputData.length % 2 !== 0 ) {
   rovers.map((rover, index) => {
     if (rover.navigate(instructions[index]) === "blocked") {
       console.log(rover.id + ": Path has been obstructed by another rover. Stopping at current location.")
+    } else if (rover.hitBoundaries) {
+      console.log(rover.id + ": Due to plateau boundaries, some instructions were ignored.")
     }
-    
   });
 
   rovers.map((rover, index) => {
