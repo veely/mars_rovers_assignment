@@ -18,8 +18,9 @@ describe("Rover", function(){
   
   describe("Path Obstruction", function() {
     context("When a rover tries to move through a path blocked by another rover", () => {
-      it("should return 'blocked'", function() {
-        expect(rover1.navigate(instructions1)).to.equal("blocked");
+      it("blocked status should be true'", function() {
+        rover1.navigate(instructions1)
+        expect(rover1.blocked).to.equal(true);
       });
     });
   });

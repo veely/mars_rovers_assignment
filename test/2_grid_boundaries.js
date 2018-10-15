@@ -23,7 +23,7 @@ describe("Rover", function(){
     });
     
     context("When attempting to deploy rover outside of grid boundaries", () => {
-      it("deployed status should return 'false'", function() {
+      it("deployed status should be 'false'", function() {
         rover2 = new Rover("6 4 E", "Rover#2");
         expect(rover2.deployed).to.equal(false);
       });
