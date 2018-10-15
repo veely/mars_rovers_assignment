@@ -29,6 +29,7 @@ class Rover {
         plateau[this.y][this.x] = 'r';
       }
     } else {
+      this.deployed = false;
       console.log(this.id + ": Cannot be deployed outside of plateau boundaries.\n");
     }
   }
