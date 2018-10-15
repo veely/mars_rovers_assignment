@@ -52,5 +52,5 @@ if (inputData.length > 2 && inputData.length % 2 !== 0 ) {
     }
   });
 } else {
-  console.log("ERROR: Invalid number of arguments. Please make sure the input is formatted like the following example: \n 8 7 \n 2 4 E \n LMMRRMLMRMM")
+  console.log("ERROR: Invalid number of arguments. Please make sure the input is formatted like the following example: \n\n 8 7 \n 2 4 E \n LMMRRMLMRMM \n 5 1 N \n MMMMRMMM")
 }
