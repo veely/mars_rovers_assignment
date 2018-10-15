@@ -1,7 +1,7 @@
 let plateau = [];
 
 const setGridSize = (x, y) => {
-  if (typeof x === 'number' && typeof y === 'number') {
+  if (!(isNaN(x)) && !(isNaN(y))) {
     plateau = [];
     for (let count_y = 0 ; count_y <= y ; count_y++) {
       plateau.push([]);
@@ -19,6 +19,7 @@ class Rover {
     this.id = id;
     this.invalidInstructions = false;
     this.hitBoundaries = false;
+    this.blocked = false;
     let data = position.split(' ');
     let x = parseInt(data[0]);
     let y = parseInt(data[1]);
@@ -59,9 +60,7 @@ class Rover {
           this.rotateRight();
           break;
         case 'M':
-          if (this.moveForward() === "blocked") {
-            return "blocked";
-          }
+          this.moveForward();
           break;
         default:
           this.invalidInstructions = true;
@@ -118,7 +117,7 @@ class Rover {
             this.y += 1;
             plateau[this.y][this.x] = 'r';
           } else {
-            return "blocked";
+            this.blocked = true;
           }
         } else {
           this.hitBoundaries = true;
@@ -131,7 +130,7 @@ class Rover {
             this.x += 1;
             plateau[this.y][this.x] = 'r';
           } else {
-            return "blocked";
+            this.blocked = true;
           }
         } else {
           this.hitBoundaries = true;
@@ -144,7 +143,7 @@ class Rover {
             this.y -= 1;
             plateau[this.y][this.x] = 'r';
           } else {
-            return "blocked";
+            this.blocked = true;
           }
         } else {
           this.hitBoundaries = true;
@@ -157,7 +156,7 @@ class Rover {
             this.x -= 1;
             plateau[this.y][this.x] = 'r';
           } else {
-            return "blocked";
+            this.blocked = true;
           }
         } else {
           this.hitBoundaries = true;

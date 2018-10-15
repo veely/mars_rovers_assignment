@@ -13,7 +13,7 @@ let inputData = data.split('\r\n');
 if (inputData.length > 2 && inputData.length % 2 !== 0 ) {
   //Converts first line of input into numbers
   let gridSize = inputData[0].split(' ').map(Number);
-  if (setGridSize(gridSize[0], gridSize[1]) === "invalid") {
+  if (setGridSize(gridSize[0], gridSize[1]) !== "invalid") {
   
     //Removes the grid size from the input array so rover data is isolated
     inputData.splice(0, 1);
@@ -36,9 +36,11 @@ if (inputData.length > 2 && inputData.length % 2 !== 0 ) {
 
     rovers.map((rover, index) => {
       if (rover.deployed) {
-        if (rover.navigate(instructions[index]) === "blocked") {
-          console.log(rover.id + ": Path has been obstructed by another rover. Stopping at current location.\n")
-        } else if (rover.hitBoundaries) {
+        rover.navigate(instructions[index]);
+        if (rover.blocked) {
+          console.log(rover.id + ": Path has been obstructed by another rover. Some instructions were ignored.\n");
+        }
+        if (rover.hitBoundaries) {
           console.log(rover.id + ": Due to plateau boundaries, some instructions were ignored.\n")
         }
       }
