@@ -107,10 +107,10 @@ class Rover {
             plateau[this.y][this.x] = 'r';
           } else {
             console.log(this.id + ": Path obstructed by another rover.");
+            return "blocked";
           }
         } else {
           console.log(this.id + ": Cannot move outside of plateau boundaries.")
-          return "blocked";
         }
         break;
       case 'E':

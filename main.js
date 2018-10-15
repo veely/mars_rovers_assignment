@@ -35,7 +35,10 @@ if (inputData.length > 2 && inputData.length % 2 !== 0 ) {
   });
 
   rovers.map((rover, index) => {
-    rover.navigate(instructions[index]);
+    if (rover.navigate(instructions[index]) === "blocked") {
+      console.log(rover.id + ": Path has been obstructed by another rover. Stopping at current location.")
+    }
+    
   });
 
   rovers.map((rover, index) => {
