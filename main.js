@@ -46,6 +46,7 @@ if (inputData.length > 2 && inputData.length % 2 !== 0 ) {
       }
     });
 
+    console.log("OUTPUT:")
     rovers.map((rover, index) => {
       if (rover.deployed) {
         console.log(rover.id + " position: " + rover.position);
