@@ -5,10 +5,15 @@ const showGrid = assets.showGrid;
 
 const fs = require('fs');
 const input = process.argv[2];
-let data = fs.readFileSync(input, 'utf8')
+let fileData = fs.readFileSync(input, 'utf8')
 
-//For Windows files, split using \r\n. For Linux files, split using \n.
-let inputData = data.split('\r\n');
+//If running on Windows, split using \r\n. If running on Linux or Mac, split using \n.
+let inputData;
+if (fileData.includes("\r\n")) {
+  inputData = fileData.split('\r\n');
+} else if (fileData.includes("\n")) {
+  inputData = fileData.split('\n');
+}
 
 if (inputData.length > 2 && inputData.length % 2 !== 0 ) {
   //Converts first line of input into numbers
