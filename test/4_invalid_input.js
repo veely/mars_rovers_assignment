@@ -7,14 +7,9 @@ const setGridSize = assets.setGridSize;
 const plateau = assets.plateau;
 
 describe("Rover", function(){
-  let rover1, rover2, rover3, instructions1, instructions2, instructions3;
+  let rover1, rover2, instructions2;
   beforeEach(() => {
     setGridSize(10, 10);
-    
-    rover2 = new Rover("3 3", "Rover#2");
-    instructions1 = "LMLMLMLMM";
-    
-    instructions3 = "MMRMMRMRRM";
   });
   
   describe("Invalid Inputs", function() {
@@ -32,7 +27,7 @@ describe("Rover", function(){
     });
 
     context("When rover given invalid navigation instructions", () => {
-      it("should give warning and continue with valid instructions", function() {
+      it("should be noted by rover and continue with valid instructions", function() {
         rover2 = new Rover("3 3 E", "Rover#2");
         instructions2 = "ABCLMMM";
         rover2.navigate(instructions2);
