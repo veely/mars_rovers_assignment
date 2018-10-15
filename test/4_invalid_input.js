@@ -7,7 +7,7 @@ const setGridSize = assets.setGridSize;
 const plateau = assets.plateau;
 
 describe("Rover", function(){
-  let rover1, rover2, instructions2;
+  let rover1, rover2, rover3, instructions2;
   beforeEach(() => {
     setGridSize(10, 10);
   });
@@ -32,6 +32,13 @@ describe("Rover", function(){
         instructions2 = "ABCLMMM";
         rover2.navigate(instructions2);
         expect(rover2.invalidInstructions).to.equal(true);
+      });
+    });
+
+    context("When rover isn't given a heading/direction with coordinates", () => {
+      it("deployed status should return 'false'", function() {
+        rover3 = new Rover("8 9", "Rover#3");
+        expect(rover3.deployed).to.equal(false);
       });
     });
   });

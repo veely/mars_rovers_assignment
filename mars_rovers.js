@@ -30,7 +30,10 @@ class Rover {
     let y = parseInt(data[1]);
     let heading = data[2];
     if ( (x >= 0 && x < plateau[0].length) && (y >= 0 && y < plateau.length) ) {
-      if (this.isBlocked(x, y)) {
+      if (heading !== 'N' && heading !== 'S' && heading !== 'E' && heading !== 'W') {
+        this.deployed = false;
+        console.log(this.id + ": Must be given a starting direction (N, S, E, W). Was not deployed.\n");
+      } else if (this.isBlocked(x, y)) {
         this.deployed = false;
         console.log(this.id + ": Cannot be deployed onto occupied spot.\n");
       } else {
