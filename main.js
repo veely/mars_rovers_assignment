@@ -1,7 +1,7 @@
 const assets = require('./mars_rovers.js')
 const Rover = assets.Rover;
 const setGridSize = assets.setGridSize;
-const plateau = assets.plateau;
+const showGrid = assets.showGrid;
 
 const fs = require('fs');
 const input = process.argv[2];
@@ -53,6 +53,9 @@ if (inputData.length > 2 && inputData.length % 2 !== 0 ) {
         console.log(rover.id + " position: Not deployed due to invalid coordinates.");
       }
     });
+
+    // OPTIONAL: Show the visual layout of the grid plateau
+    // console.log(showGrid());
   } else {
     console.log("ERROR: Invalid grid size input. Please make sure the input consists of numbers only.")
   }

@@ -14,6 +14,11 @@ const setGridSize = (x, y) => {
   }
 }
 
+const showGrid = () => {
+  let grid = plateau;
+  return grid.reverse();
+}
+
 class Rover {
   constructor(position, id) {
     this.id = id;
@@ -171,5 +176,5 @@ class Rover {
 module.exports = {
   Rover: Rover,
   setGridSize: setGridSize,
-  plateau: plateau
+  showGrid: showGrid
 }
