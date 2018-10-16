@@ -52,7 +52,7 @@ class Rover {
   }
 
   isBlocked(x, y) {
-    return plateau[y][x] === 'r'
+    return plateau[y][x] !== ' '
   }
 
   navigate(instructions) {

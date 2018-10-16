@@ -48,7 +48,7 @@ try {
           if (rover.deployed) {
             rover.navigate(instructions[index]);
             if (rover.blocked) {
-              console.log(rover.id + ": Path has been obstructed by another rover. Some instructions were ignored.\n");
+              console.log(rover.id + ": Path has been obstructed by an obstacle. Some instructions were ignored.\n");
             }
             if (rover.hitBoundaries) {
               console.log(rover.id + ": Due to plateau boundaries, some instructions were ignored.\n")
