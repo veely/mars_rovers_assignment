@@ -37,7 +37,7 @@ class Rover {
       console.log(this.id + ": Must be given a starting direction (N, S, E, W). Was not deployed.\n");
     } else if (this.isBlocked(x, y)) {
       this.deployed = false;
-      console.log(this.id + ": Cannot be deployed onto occupied spot.\n");
+      console.log(this.id + ": Cannot be deployed onto occupied coordinate.\n");
     } else {
       this.deployed = true;
       this.x = x;
