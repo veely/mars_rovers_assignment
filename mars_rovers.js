@@ -3,6 +3,11 @@ let plateau = [];
 const setGridSize = (x, y) => {
   if (!(isNaN(x)) && !(isNaN(y))) {
     plateau = [];
+    if (x === 0 && y === 0) {
+      x = 15;
+      y = 15;
+      console.log("Warning: Grid size cannot be (0, 0) or empty. Automatically set grid size to (15, 15).\n");
+    }
     for (let count_y = 0 ; count_y <= y ; count_y++) {
       plateau.push([]);
       for (let count_x = 0 ; count_x <= x ; count_x++) {
