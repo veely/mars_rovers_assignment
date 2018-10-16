@@ -57,8 +57,8 @@ class Rover {
 
   navigate(instructions) {
     let splitInstructions = instructions.split('');
-    for (let step in splitInstructions) {
-      switch(splitInstructions[step]) {
+    splitInstructions.map( instruction => {
+      switch(instruction) {
         case 'L':
           this.rotateLeft();
           break;
@@ -72,7 +72,7 @@ class Rover {
           this.invalidInstructions = true;
           break;
       }
-    }
+    });
   }
 
   rotateLeft() {
