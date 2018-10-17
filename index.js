@@ -39,7 +39,7 @@ try {
         let instructions = [];
 
         roverData.map((data, index) => {
-          let roverPosition = data[0];
+          let roverPosition = data[0].toUpperCase();
           instructions.push(data[1]);
           rovers[index] = new Rover(roverPosition, "Rover#" + (index + 1));
         });
